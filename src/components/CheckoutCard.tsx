@@ -1,10 +1,10 @@
-
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { CreditCard, TagIcon, ChevronDown, ChevronUp, Check } from 'lucide-react';
 import Logo from './Logo';
 import CreditCardForm from './CreditCardForm';
 import { cn } from '@/lib/utils';
+import { Switch } from '@/components/ui/switch';
 
 interface CheckoutCardProps {
   productName: string;
@@ -26,6 +26,7 @@ const CheckoutCard: React.FC<CheckoutCardProps> = ({
   const [paymentMethod, setPaymentMethod] = useState<'credit' | 'pix'>('credit');
   const [isLoading, setIsLoading] = useState(false);
   const [isComplete, setIsComplete] = useState(false);
+  const [useTwoCards, setUseTwoCards] = useState(false);
 
   const formattedPrice = new Intl.NumberFormat('pt-BR', {
     style: 'currency',
@@ -215,17 +216,34 @@ const CheckoutCard: React.FC<CheckoutCardProps> = ({
             className="pt-4"
           >
             <div className="bg-blue-50 p-4 rounded-lg">
-              <div className="flex items-start mb-4">
-                <input 
-                  type="radio" 
-                  id="twoCards" 
-                  name="cardOption" 
-                  className="custom-checkbox mt-0.5" 
-                />
-                <label htmlFor="twoCards" className="ml-2 text-sm">Usar dois cartões</label>
+              <div className="flex items-center justify-between mb-4">
+                <div className="flex items-center">
+                  <Switch
+                    id="twoCards"
+                    checked={useTwoCards}
+                    onCheckedChange={setUseTwoCards}
+                    className="mr-2"
+                  />
+                  <label htmlFor="twoCards" className="text-sm font-medium cursor-pointer">
+                    Usar dois cartões
+                  </label>
+                </div>
               </div>
               
               <CreditCardForm />
+              
+              {useTwoCards && (
+                <motion.div
+                  initial={{ opacity: 0, height: 0 }}
+                  animate={{ opacity: 1, height: 'auto' }}
+                  exit={{ opacity: 0, height: 0 }}
+                  transition={{ duration: 0.3 }}
+                  className="mt-4 pt-4 border-t border-blue-100"
+                >
+                  <h3 className="text-sm font-medium mb-3">Segundo cartão</h3>
+                  <CreditCardForm />
+                </motion.div>
+              )}
             </div>
           </motion.div>
         )}
