@@ -143,20 +143,15 @@ const CheckoutCard: React.FC<CheckoutCardProps> = ({
           <label htmlFor="phone" className="text-sm font-medium text-gray-700 block">
             Celular
           </label>
-          <div className="flex">
-            <div className="flex items-center bg-gray-100 px-2 rounded-l-md border border-r-0 border-checkout-border">
-              <span className="text-sm text-gray-600">+55</span>
-            </div>
-            <input
-              id="phone"
-              type="tel"
-              className="checkout-input rounded-l-none"
-              placeholder="(11) 98765-4321"
-              value={phone}
-              onChange={(e) => setPhone(e.target.value)}
-              required
-            />
-          </div>
+          <input
+            id="phone"
+            type="tel"
+            className="checkout-input"
+            placeholder="(11) 98765-4321"
+            value={phone}
+            onChange={(e) => setPhone(e.target.value)}
+            required
+          />
         </motion.div>
         
         <motion.div custom={4} variants={itemVariants} className="pt-2">
