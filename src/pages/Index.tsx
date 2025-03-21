@@ -35,7 +35,7 @@ const Index = () => {
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-            className="w-16 h-16 border-2 border-checkout-blue border-t-transparent rounded-full animate-spin"
+            className="w-16 h-16 border-2 border-checkout-purple border-t-transparent rounded-full animate-spin"
           />
           <motion.p
             initial={{ opacity: 0, y: 10 }}
@@ -65,7 +65,7 @@ const Index = () => {
           </div>
           
           <CheckoutCard 
-            productName="Método Viver de Água"
+            productName="Academia do Painel de Led"
             price={50.57}
             installments={12}
           />

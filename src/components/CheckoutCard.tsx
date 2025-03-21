@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { CreditCard, TagIcon, ChevronDown, ChevronUp, Check } from 'lucide-react';
@@ -79,8 +80,8 @@ const CheckoutCard: React.FC<CheckoutCardProps> = ({
       <div className="p-5 border-b border-gray-100 flex items-center space-x-3">
         <Logo />
         <div className="flex flex-col items-start">
-          <span className="text-xs text-gray-500 font-medium">Método Viver de Água</span>
-          <h1 className="text-sm font-semibold">{productName}</h1>
+          <span className="text-xs text-gray-500 font-medium">Imersão Empreenda com Led</span>
+          <h1 className="text-sm font-semibold">Academia do Painel de Led</h1>
         </div>
       </div>
 
@@ -277,7 +278,7 @@ const CheckoutCard: React.FC<CheckoutCardProps> = ({
           <div className="bg-gray-50 p-4 rounded-md">
             <h3 className="font-medium text-sm mb-2">Detalhes da compra</h3>
             <div className="flex justify-between text-sm">
-              <span>{productName}</span>
+              <span>Academia do Painel de Led</span>
               <span className="font-medium">{installments}x de {formattedPrice}</span>
             </div>
           </div>
