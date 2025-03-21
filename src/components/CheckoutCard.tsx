@@ -23,7 +23,7 @@ const CheckoutCard: React.FC<CheckoutCardProps> = ({
   const [phone, setPhone] = useState('');
   const [couponOpen, setCouponOpen] = useState(false);
   const [couponCode, setCouponCode] = useState('');
-  const [paymentMethod, setPaymentMethod] = useState<'credit' | 'pix' | 'boleto' | 'debit'>('credit');
+  const [paymentMethod, setPaymentMethod] = useState<'credit' | 'pix'>('credit');
   const [isLoading, setIsLoading] = useState(false);
   const [isComplete, setIsComplete] = useState(false);
 
@@ -182,7 +182,7 @@ const CheckoutCard: React.FC<CheckoutCardProps> = ({
         
         <motion.div custom={5} variants={itemVariants} className="pt-4">
           <p className="text-sm font-medium text-gray-700 mb-3">Forma de pagamento</p>
-          <div className="grid grid-cols-4 gap-2">
+          <div className="grid grid-cols-2 gap-2">
             <button
               type="button"
               className={cn("payment-tab", paymentMethod === 'credit' && "active")}
@@ -202,32 +202,6 @@ const CheckoutCard: React.FC<CheckoutCardProps> = ({
                 <path d="M17 13.5L15.5 12L12 15.5L8.5 12L7 13.5L10.5 17L7 20.5L8.5 22L12 18.5L15.5 22L17 20.5L13.5 17L17 13.5Z" fill="currentColor"/>
               </svg>
               <span className="text-xs">Pix</span>
-            </button>
-            <button
-              type="button"
-              className={cn("payment-tab", paymentMethod === 'boleto' && "active")}
-              onClick={() => setPaymentMethod('boleto')}
-            >
-              <svg className="h-4 w-4 mr-1" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <rect x="3" y="4" width="2" height="16" fill="currentColor"/>
-                <rect x="7" y="4" width="1" height="16" fill="currentColor"/>
-                <rect x="10" y="4" width="2" height="16" fill="currentColor"/>
-                <rect x="14" y="4" width="1" height="16" fill="currentColor"/>
-                <rect x="17" y="4" width="2" height="16" fill="currentColor"/>
-                <rect x="21" y="4" width="1" height="16" fill="currentColor"/>
-              </svg>
-              <span className="text-xs">Boleto</span>
-            </button>
-            <button
-              type="button"
-              className={cn("payment-tab", paymentMethod === 'debit' && "active")}
-              onClick={() => setPaymentMethod('debit')}
-            >
-              <svg className="h-5 w-5 mr-1" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <rect x="3" y="6" width="18" height="12" rx="2" stroke="currentColor" strokeWidth="2"/>
-                <line x1="3" y1="10" x2="21" y2="10" stroke="currentColor" strokeWidth="2"/>
-              </svg>
-              <span className="text-xs">Via Pads</span>
             </button>
           </div>
         </motion.div>
@@ -252,6 +226,36 @@ const CheckoutCard: React.FC<CheckoutCardProps> = ({
               </div>
               
               <CreditCardForm />
+            </div>
+          </motion.div>
+        )}
+        
+        {paymentMethod === 'pix' && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.3 }}
+            className="pt-4"
+          >
+            <div className="bg-blue-50 p-4 rounded-lg">
+              <div className="flex flex-col items-center justify-center">
+                <div className="bg-white p-4 rounded-md mb-3">
+                  <svg width="150" height="150" viewBox="0 0 500 500" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="500" height="500" fill="white"/>
+                    <path d="M200 175L175 150L150 175L175 200L200 175Z" fill="black"/>
+                    <path d="M150 325L175 350L200 325L175 300L150 325Z" fill="black"/>
+                    <path d="M325 150L350 175L325 200L300 175L325 150Z" fill="black"/>
+                    <path d="M350 325L325 350L300 325L325 300L350 325Z" fill="black"/>
+                    <path d="M275 175H225V325H275V175Z" fill="black"/>
+                    <path d="M325 225H175V275H325V225Z" fill="black"/>
+                  </svg>
+                </div>
+                <p className="text-sm text-gray-600 mb-1">Escaneie o código QR com o aplicativo do seu banco</p>
+                <button type="button" className="text-sm text-checkout-blue font-medium">
+                  Copiar código PIX
+                </button>
+              </div>
             </div>
           </motion.div>
         )}
